@@ -1,0 +1,10 @@
+name: Name
+last_name: Last Name
+birthday: "dd.mm.yyyy"
+address: address
+postal_code: 12345
+city: City
+phone_number: "+123454566734"
+email: "user@example.com"
+type: "Urban Sports Club"
+usc_number: "219254799"
