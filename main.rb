@@ -64,8 +64,8 @@ class Scheduler
     configure_capybara
 
     # inputs
-    day = "26"
-    time = "08:00 - 10:00" # this has to look like the exact text on the page
+    day = "8"
+    time = "18:30 - 20:30" # this has to look like the exact text on the page
 
     # load user data
     user = load_user
@@ -79,7 +79,7 @@ class Scheduler
     byebug
 
     # click day
-    find('.drp-calendar-day', text: day).click # only if the correct month is already selected
+    find('.drp-calendar-day', :text => /\A#{day}\z/).click # only works if the correct month is already selected
 
     # click book button on chosen time
     find(".drp-course-date-item", text: time).find_button(text: "BUCHEN").click
@@ -103,4 +103,4 @@ class Scheduler
   end
 end
 
-Scheduler.new.schedule_basement
+Scheduler.new.schedule_boulderklub
