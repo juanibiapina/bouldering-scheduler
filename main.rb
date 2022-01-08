@@ -1,6 +1,7 @@
 require "capybara"
 require "capybara/dsl"
 require "byebug"
+require "chronic"
 
 class Scheduler
 
@@ -19,8 +20,11 @@ class Scheduler
     configure_capybara
 
     # inputs
-    day = "4"
+    date = Chronic.parse("this saturday")
     time = "10:30 - 12:30" # this has to look like the exact text on the page
+
+    # calculate day
+    day = date.day.to_s
 
     # load user data
     user = load_user
@@ -33,8 +37,6 @@ class Scheduler
 
     # select regular slots (after 14 or weekends)
     find(".drp-course-list-item-regulaere-slots").click
-
-    byebug
 
     # click day
     find(".drp-calendar-day.drp-calendar-day-dates", text: day).click # only if the correct month is already selected
@@ -64,7 +66,7 @@ class Scheduler
     configure_capybara
 
     # inputs
-    day = "8"
+    day = "11"
     time = "18:30 - 20:30" # this has to look like the exact text on the page
 
     # load user data
@@ -103,4 +105,4 @@ class Scheduler
   end
 end
 
-Scheduler.new.schedule_boulderklub
+Scheduler.new.schedule_basement
