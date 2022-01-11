@@ -66,8 +66,11 @@ class Scheduler
     configure_capybara
 
     # inputs
-    day = "11"
+    date = Chronic.parse("next tuesday")
     time = "18:30 - 20:30" # this has to look like the exact text on the page
+
+    # calculate day
+    day = date.day.to_s
 
     # load user data
     user = load_user
@@ -77,8 +80,6 @@ class Scheduler
 
     # visit website
     visit("/")
-
-    byebug
 
     # click day
     find('.drp-calendar-day', :text => /\A#{day}\z/).click # only works if the correct month is already selected
@@ -105,4 +106,4 @@ class Scheduler
   end
 end
 
-Scheduler.new.schedule_basement
+Scheduler.new.schedule_boulderklub
