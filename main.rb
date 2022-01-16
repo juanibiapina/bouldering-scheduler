@@ -7,28 +7,7 @@ class Scheduler
 
   include Capybara::DSL
 
-  def configure_capybara
-    Capybara.default_driver = :selenium
-    Capybara.run_server = false
-  end
-
-  def load_user
-    YAML.load(File.read("data/user.yml"))
-  end
-
-  def schedule_basement
-    configure_capybara
-
-    # inputs
-    date = Chronic.parse("this saturday")
-    time = "10:30 - 12:30" # this has to look like the exact text on the page
-
-    # calculate day
-    day = date.day.to_s
-
-    # load user data
-    user = load_user
-
+  def schedule_basement(user, day, time)
     # select URL
     Capybara.app_host = 'https://basement-boulderstudio.de/'
 
@@ -106,4 +85,30 @@ class Scheduler
   end
 end
 
-Scheduler.new.schedule_boulderklub
+def configure_capybara
+  Capybara.default_driver = :selenium
+  Capybara.run_server = false
+end
+
+def load_user
+  YAML.load(File.read("data/user.yml"))
+end
+
+# read arguments
+gym_name = ARGV[0]
+human_date = ARGV[1]
+time = ARGV[2]
+
+# calculate day
+date = Chronic.parse(human_date)
+day = date.day.to_s
+
+configure_capybara
+
+# load user data
+user = load_user
+
+# schedule
+if gym_name == "basement"
+  Scheduler.new.schedule_basement(user, day, time)
+end
