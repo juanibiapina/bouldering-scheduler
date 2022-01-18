@@ -7,7 +7,7 @@ class Scheduler
 
   include Capybara::DSL
 
-  def schedule_basement(user, day, time)
+  def schedule_basement(user, day, month, time)
     # select URL
     Capybara.app_host = 'https://basement-boulderstudio.de/'
 
@@ -16,6 +16,13 @@ class Scheduler
 
     # select regular slots (after 14 or weekends)
     find(".drp-course-list-item-regulaere-slots").click
+
+    # advance month if needed
+    month_diff = month - Date.today.month
+    month_diff = 1
+    month_diff.times do
+      find('.drp-course-month-selector-next').click
+    end
 
     # click day
     find(".drp-calendar-day.drp-calendar-day-dates", text: day).click # only if the correct month is already selected
@@ -41,12 +48,19 @@ class Scheduler
     byebug
   end
 
-  def schedule_boulderklub(user, day, time)
+  def schedule_boulderklub(user, day, month, time)
     # select URL
     Capybara.app_host = 'https://boulderklub.de'
 
     # visit website
     visit("/")
+
+    # advance month if needed
+    month_diff = month - Date.today.month
+    month_diff = 1
+    month_diff.times do
+      find('.drp-course-month-selector-next').click
+    end
 
     # click day
     find('.drp-calendar-day', :text => /\A#{day}\z/).click # only works if the correct month is already selected
@@ -90,6 +104,7 @@ time = ARGV[2]
 # calculate day
 date = Chronic.parse(human_date)
 day = date.day.to_s
+month = date.month
 
 configure_capybara
 
@@ -98,7 +113,7 @@ user = load_user
 
 # schedule
 if gym_name == "basement"
-  Scheduler.new.schedule_basement(user, day, time)
+  Scheduler.new.schedule_basement(user, day, month, time)
 elsif gym_name == "boulderklub"
-  Scheduler.new.schedule_boulderklub(user, day, time)
+  Scheduler.new.schedule_boulderklub(user, day, month, time)
 end
