@@ -41,19 +41,7 @@ class Scheduler
     byebug
   end
 
-  def schedule_boulderklub
-    configure_capybara
-
-    # inputs
-    date = Chronic.parse("next tuesday")
-    time = "18:30 - 20:30" # this has to look like the exact text on the page
-
-    # calculate day
-    day = date.day.to_s
-
-    # load user data
-    user = load_user
-
+  def schedule_boulderklub(user, day, time)
     # select URL
     Capybara.app_host = 'https://boulderklub.de'
 
@@ -111,4 +99,6 @@ user = load_user
 # schedule
 if gym_name == "basement"
   Scheduler.new.schedule_basement(user, day, time)
+elsif gym_name == "boulderklub"
+  Scheduler.new.schedule_boulderklub(user, day, time)
 end
