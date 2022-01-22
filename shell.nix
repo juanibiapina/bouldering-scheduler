@@ -2,10 +2,11 @@
 
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
+    docker-compose
     firefox
     geckodriver
     heroku
-    ruby_3_1
     postgresql
+    ruby_3_1
   ];
 }
