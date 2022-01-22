@@ -44,7 +44,13 @@ class Scheduler
     # click submit button
     find(".drp-course-booking-continue").click
 
+    # accept data protection terms
+    find("label.drp-d-block").click
+
     byebug
+
+    # submit form
+    find("button.drp-booking-overview-booking-btn").click
   end
 
   def schedule_boulderklub(user, day, month, time)
@@ -81,7 +87,13 @@ class Scheduler
     # click submit button
     find(".drp-course-booking-continue").click
 
+    # accept data protection terms
+    find("label.drp-d-block").click
+
     byebug
+
+    # submit form
+    find("button.drp-booking-overview-booking-btn").click
   end
 end
 
