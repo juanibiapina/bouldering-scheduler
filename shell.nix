@@ -6,5 +6,6 @@ pkgs.mkShell {
     geckodriver
     heroku
     ruby_3_1
+    postgresql
   ];
 }
