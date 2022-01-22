@@ -179,5 +179,8 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.1)
   selenium-webdriver
 
+RUBY VERSION
+   ruby 3.1.0p0
+
 BUNDLED WITH
    2.3.5
