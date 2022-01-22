@@ -19,7 +19,6 @@ class Scheduler
 
     # advance month if needed
     month_diff = month - Date.today.month
-    month_diff = 1
     month_diff.times do
       find('.drp-course-month-selector-next').click
     end
@@ -57,7 +56,6 @@ class Scheduler
 
     # advance month if needed
     month_diff = month - Date.today.month
-    month_diff = 1
     month_diff.times do
       find('.drp-course-month-selector-next').click
     end
