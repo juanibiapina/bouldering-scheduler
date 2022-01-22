@@ -17,3 +17,4 @@
 /config/master.key
 
 data/user.yml
+fixtures/test_request.json
