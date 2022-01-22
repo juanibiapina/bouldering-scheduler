@@ -2,9 +2,9 @@
 
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
+    firefox
+    geckodriver
     heroku
     ruby_3_1
-    geckodriver
-    firefox
   ];
 }
