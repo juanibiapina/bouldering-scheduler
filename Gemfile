@@ -9,6 +9,8 @@ gem "rails", "~> 6.1.4", ">= 6.1.4.1"
 gem "pg", "~> 1.1"
 # Use Puma as the app server
 gem "puma", "~> 5.0"
+# enable CORS
+gem "rack-cors"
 
 gem "capybara"
 gem "selenium-webdriver"
