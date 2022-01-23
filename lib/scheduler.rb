@@ -49,7 +49,7 @@ class Scheduler
     find("label.drp-d-block").click
 
     # submit form
-    find("button.drp-booking-overview-booking-btn").click
+    #find("button.drp-booking-overview-booking-btn").click
   end
 
   def schedule_boulderklub(user, day, month, time)
@@ -90,6 +90,6 @@ class Scheduler
     find("label.drp-d-block").click
 
     # submit form
-    find("button.drp-booking-overview-booking-btn").click
+    #find("button.drp-booking-overview-booking-btn").click
   end
 end
