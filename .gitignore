@@ -18,3 +18,5 @@
 
 data/user.yml
 data/requests/*.json
+
+spec/examples.txt
