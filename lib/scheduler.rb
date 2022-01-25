@@ -8,6 +8,8 @@ class Scheduler
 
   include Capybara::DSL
 
+  class SafetyCheckError < StandardError; end
+
   def schedule_basement(user, day, month, time, submit: false)
     # select URL
     Capybara.app_host = 'https://basement-boulderstudio.de/'
@@ -87,6 +89,13 @@ class Scheduler
 
     # click submit button
     find(".drp-course-booking-continue").click
+
+    # run safety check
+    text = find(".drp-course-date-item-date").text
+    m = /[^,]*, (..\...\...) (.*)/.match(text) # "Di., 01.02.22 18:30 - 20:30"
+    if m[2] != time
+      raise SafetyCheckError, "would schedule wrong time: #{m[2]}"
+    end
 
     # accept data protection terms
     find("label.drp-d-block").click
