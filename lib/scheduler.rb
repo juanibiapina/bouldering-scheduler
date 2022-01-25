@@ -8,7 +8,7 @@ class Scheduler
 
   include Capybara::DSL
 
-  def schedule_basement(user, day, month, time)
+  def schedule_basement(user, day, month, time, submit: false)
     # select URL
     Capybara.app_host = 'https://basement-boulderstudio.de/'
 
@@ -49,10 +49,12 @@ class Scheduler
     find("label.drp-d-block").click
 
     # submit form
-    find("button.drp-booking-overview-booking-btn").click
+    if submit
+      find("button.drp-booking-overview-booking-btn").click
+    end
   end
 
-  def schedule_boulderklub(user, day, month, time)
+  def schedule_boulderklub(user, day, month, time, submit: false)
     # select URL
     Capybara.app_host = 'https://boulderklub.de'
 
@@ -90,6 +92,8 @@ class Scheduler
     find("label.drp-d-block").click
 
     # submit form
-    find("button.drp-booking-overview-booking-btn").click
+    if submit
+      find("button.drp-booking-overview-booking-btn").click
+    end
   end
 end
