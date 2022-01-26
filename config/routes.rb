@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :sessions, defaults: { format: :json }
+  mount API => "/"
 end
