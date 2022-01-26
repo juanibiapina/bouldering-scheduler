@@ -25,6 +25,7 @@ class SessionsAPI < Grape::API
         requires :human_date, type: String
         requires :time, type: String
       end
+      optional :dry_run, type: Boolean, default: false
     end
     post do
       gym_name = params["session"]["gym_name"]
@@ -33,16 +34,22 @@ class SessionsAPI < Grape::API
 
       user = params["user"]
 
+      dry_run = params["dry_run"]
+
       # calculate day
       date = Chronic.parse(human_date)
       day = date.day.to_s
       month = date.month
 
       if gym_name == "basement"
-        Scheduler.new.schedule_basement(user, day, month, time, submit: false)
+        Scheduler.new.schedule_basement(user, day, month, time, submit: !dry_run)
       elsif gym_name == "boulderklub"
-        Scheduler.new.schedule_boulderklub(user, day, month, time, submit: false)
+        Scheduler.new.schedule_boulderklub(user, day, month, time, submit: !dry_run)
       end
+
+      {
+        dry_run: dry_run
+      }
     end
   end
 end
