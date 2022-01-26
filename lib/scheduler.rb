@@ -50,6 +50,13 @@ class Scheduler
     # accept data protection terms
     find("label.drp-d-block").click
 
+    # run safety check
+    text = find(".drp-course-date-item-date").text
+    m = /[^,]*, (..\...\...) (.*)/.match(text) # "Di., 01.02.22 18:30 - 20:30"
+    if m[2] != time
+      raise SafetyCheckError, "would schedule wrong time: #{m[2]}"
+    end
+
     # submit form
     if submit
       find("button.drp-booking-overview-booking-btn").click
@@ -90,15 +97,15 @@ class Scheduler
     # click submit button
     find(".drp-course-booking-continue").click
 
+    # accept data protection terms
+    find("label.drp-d-block").click
+
     # run safety check
     text = find(".drp-course-date-item-date").text
     m = /[^,]*, (..\...\...) (.*)/.match(text) # "Di., 01.02.22 18:30 - 20:30"
     if m[2] != time
       raise SafetyCheckError, "would schedule wrong time: #{m[2]}"
     end
-
-    # accept data protection terms
-    find("label.drp-d-block").click
 
     # submit form
     if submit
