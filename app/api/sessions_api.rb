@@ -30,6 +30,7 @@ class SessionsAPI < Grape::API
       gym_name = params["session"]["gym_name"]
       human_date = params["session"]["human_date"]
       time = params["session"]["time"]
+
       user = params["user"]
 
       # calculate day
