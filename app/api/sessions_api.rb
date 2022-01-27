@@ -42,14 +42,12 @@ class SessionsAPI < Grape::API
       month = date.month
 
       if gym_name == "basement"
-        Scheduler.new.schedule_basement(user, day, month, time, submit: !dry_run)
+        result = Scheduler.new.schedule_basement(user, day, month, time, submit: !dry_run)
       elsif gym_name == "boulderklub"
-        Scheduler.new.schedule_boulderklub(user, day, month, time, submit: !dry_run)
+        result = Scheduler.new.schedule_boulderklub(user, day, month, time, submit: !dry_run)
       end
 
-      {
-        dry_run: dry_run
-      }
+      result.merge(dry_run: dry_run)
     end
   end
 end

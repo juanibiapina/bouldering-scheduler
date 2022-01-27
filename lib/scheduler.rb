@@ -53,14 +53,19 @@ class Scheduler
     # run safety check
     text = find(".drp-course-date-item-date").text
     m = /[^,]*, (..\...\...) (.*)/.match(text) # "Di., 01.02.22 18:30 - 20:30"
-    if m[2] != time
-      raise SafetyCheckError, "would schedule wrong time: #{m[2]}"
+    scheduled_time = m[2]
+    if scheduled_time != time
+      raise SafetyCheckError, "would schedule wrong time: #{scheduled_time}"
     end
 
     # submit form
     if submit
       find("button.drp-booking-overview-booking-btn").click
     end
+
+    {
+      scheduled_time: scheduled_time
+    }
   end
 
   def schedule_boulderklub(user, day, month, time, submit: false)
@@ -103,13 +108,18 @@ class Scheduler
     # run safety check
     text = find(".drp-course-date-item-date").text
     m = /[^,]*, (..\...\...) (.*)/.match(text) # "Di., 01.02.22 18:30 - 20:30"
-    if m[2] != time
-      raise SafetyCheckError, "would schedule wrong time: #{m[2]}"
+    scheduled_time = m[2]
+    if scheduled_time != time
+      raise SafetyCheckError, "would schedule wrong time: #{scheduled_time}"
     end
 
     # submit form
     if submit
       find("button.drp-booking-overview-booking-btn").click
     end
+
+    {
+      scheduled_time: scheduled_time
+    }
   end
 end
