@@ -11,7 +11,7 @@ class SessionsAPI < Grape::API
       requires :user, type: Hash do
         requires :name, type: String
         requires :last_name, type: String
-        requires :birthday, type: String
+        requires :birthday, type: Date
         requires :address, type: String
         requires :postal_code, type: String
         requires :city, type: String

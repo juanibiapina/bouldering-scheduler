@@ -35,7 +35,7 @@ class Scheduler
     # fill in user data
     fill_in("Vorname*", with: user["name"])
     fill_in("Nachname*", with: user["last_name"])
-    fill_in("Geburtsdatum* (TT.MM.JJJJ)", with: user["birthday"])
+    fill_in("Geburtsdatum* (TT.MM.JJJJ)", with: user["birthday"].strftime("%d.%m.%Y"))
     fill_in("Straße und Hausnummer*", with: user["address"])
     fill_in("Postleitzahl*", with: user["postal_code"])
     fill_in("Stadt*", with: user["city"])
@@ -90,7 +90,7 @@ class Scheduler
     # fill in user data
     fill_in("Vorname*", with: user["name"])
     fill_in("Nachname*", with: user["last_name"])
-    fill_in("Geburtsdatum* (TT.MM.JJJJ)", with: user["birthday"])
+    fill_in("Geburtsdatum* (TT.MM.JJJJ)", with: user["birthday"].strftime("%d.%m.%Y"))
     fill_in("Straße und Hausnummer*", with: user["address"])
     fill_in("Postleitzahl*", with: user["postal_code"])
     fill_in("Stadt*", with: user["city"])
