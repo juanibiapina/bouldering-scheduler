@@ -73,7 +73,7 @@ class Scheduler
     Capybara.app_host = 'https://boulderklub.de'
 
     # visit website
-    visit("/")
+    visit("/en/booking/adult-slots/")
 
     # advance month if needed
     month_diff = month - Date.today.month
