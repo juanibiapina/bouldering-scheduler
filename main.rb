@@ -2,6 +2,7 @@ require "capybara"
 require "capybara/dsl"
 require "byebug"
 require "chronic"
+require "yaml"
 
 require_relative "lib/scheduler"
 
