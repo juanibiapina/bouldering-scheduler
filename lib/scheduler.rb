@@ -35,11 +35,6 @@ class Scheduler
     # fill in user data
     fill_in("Vorname*", with: user["name"])
     fill_in("Nachname*", with: user["last_name"])
-    fill_in("Geburtsdatum* (TT.MM.JJJJ)", with: user["birthday"].strftime("%d.%m.%Y"))
-    fill_in("Straße und Hausnummer*", with: user["address"])
-    fill_in("Postleitzahl*", with: user["postal_code"])
-    fill_in("Stadt*", with: user["city"])
-    fill_in("Mobilnummer*", with: user["phone_number"])
     fill_in("Email*", with: user["email"])
     select(user["type"])
     fill_in("Mitgliedsnummer USC*", with: user["usc_number"])
