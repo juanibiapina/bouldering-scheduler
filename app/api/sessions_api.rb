@@ -12,9 +12,6 @@ class SessionsAPI < Grape::API
         requires :name, type: String
         requires :last_name, type: String
         requires :birthday, type: Date
-        requires :address, type: String
-        requires :postal_code, type: String
-        requires :city, type: String
         requires :phone_number, type: String
         requires :email, type: String
         requires :type, type: String
